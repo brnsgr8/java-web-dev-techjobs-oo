@@ -2,10 +2,10 @@ package org.launchcode.techjobs_oo;
 
 import java.util.Objects;
 
-public class Job {
+public class Job extends JobField {
 
-    private int id;
-    private static int nextId = 1;
+//    private int id;
+//    private static int nextId = 1;
 
     private String name;
     private Employer employer;
@@ -16,13 +16,14 @@ public class Job {
     // TODO: Add two constructors - one to initialize a unique ID and a second to initialize the
     //  other five fields. The second constructor should also call the first in order to initialize
     //  the 'id' field.
-
+//
     public Job(){
-        id=nextId;
+        int id = nextId;
         nextId++;
     }
 
     public Job(String name, Employer employer, Location location, PositionType positionType, CoreCompetency coreCompetency){
+       this();
        this.name= name;
        this.employer = employer;
        this.location = location;
@@ -30,6 +31,79 @@ public class Job {
        this.coreCompetency = coreCompetency;
 
 }
+
+//    @Override
+//    public String toString() {
+//
+//        String nameValue = this.name;
+//        String employerValue = this.getEmployer().toString();
+//        String locationValue = this.getLocation().toString();
+//        String positionTypeValue = this.getPositionType().toString();
+//        String coreCompetencyValue = this.getCoreCompetency().toString();
+//
+//
+//
+//
+//        if (this.name.equals("")) {
+//            nameValue ="Data not available";
+//        }
+//        if (this.employer.equals("")) {
+//            employerValue = "Data not available";
+//        }
+//        if (this.location.equals("")) {
+//            locationValue = "Data not available";
+//        }
+//        if (this.positionType.equals("")) {
+//            positionTypeValue = "Data not available";
+//        }
+//        if (this.coreCompetency.equals("")) {
+//            coreCompetencyValue = "Data not available";
+//        }
+//
+//        return
+//                  "ID: "+ this.id+
+//                "\nName: " + nameValue +
+//                "\nEmployer: " + employerValue +
+//                "\nLocation: " + locationValue +
+//                "\nPosition Type: " + positionTypeValue +
+//                "\nCore Competency: " + coreCompetencyValue +
+//                "\n";
+//    }
+
+    @Override
+    public String toString() {
+        if (this.employer == null && this.name == null
+                && this.location == null && this.positionType == null
+                && this.coreCompetency == null) {
+            return "OOPS! This job does not seem to exist.";
+        }
+        String nameValue = this.name;
+        String employerValue = this.getEmployer().toString();
+        String locationValue = this.getLocation().toString();
+        String positionTypeValue = this.getPositionType().toString();
+        String coreCompetencyValue = this.getCoreCompetency().toString();
+
+        if (this.employer.getValue() == null) {
+            employerValue = "Data not available";
+        }
+        if (this.name == null) {
+            nameValue = "Data not available";
+        }
+        if (this.location.getValue() == null) {
+            locationValue = "Data not available";
+        }
+        if (this.positionType.getValue() == null) {
+            positionTypeValue = "Data not available";
+        }
+        if (this.coreCompetency.getValue() == null) {
+            coreCompetencyValue = "Data not available";
+        }
+
+        return "\nID: " + this.id+ "\nName: " + nameValue + "\nEmployer: "
+                + employerValue + "\nLocation: " + locationValue
+                + "\nPosition Type: " + positionTypeValue
+                + "\nCore Competency: " + coreCompetencyValue + "\n";
+    }
 
     // TODO: Add custom equals and hashCode methods. Consider two Job objects "equal" when their id fields
     //  match.
